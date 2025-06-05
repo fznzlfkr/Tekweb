@@ -209,10 +209,7 @@
         <header>
             <nav>
                 <div class="logo">Management Barang</div>
-                <div class="nav-buttons">
-                    <a href="#features" class="btn btn-outline">Fitur</a>
-                    <a href="<?= base_url('login') ?>" class="btn btn-primary" >Masuk</a>
-                </div>
+
             </nav>
         </header>
 
@@ -220,36 +217,15 @@
         <main>
             <div class="hero">
                 <h1>Selamat Datang</h1>
-                <p>Platform digital yang memberikan solusi terbaik untuk kebutuhan Anda. Bergabunglah dengan ribuan pengguna yang telah merasakan kemudahan layanan kami.</p>
+                <p>Di Aplikasi Management Barang kelompok 5</p>
                 
                 <div class="hero-buttons">
                     <a href="<?= base_url('login') ?>" class="btn btn-primary btn-hero" >Mulai Sekarang</a>
-                    <a href="#features" class="btn btn-outline btn-hero">Pelajari Lebih</a>
                 </div>
             </div>
         </main>
 
-        <!-- Features -->
-        <section class="features" id="features">
-            <h2>Mengapa Memilih Kami?</h2>
-            <div class="feature-grid">
-                <div class="feature">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Cepat</h3>
-                    <p>Proses yang efisien dan responsif untuk semua kebutuhan Anda</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">🔒</div>
-                    <h3>Aman</h3>
-                    <p>Keamanan data terjamin dengan teknologi enkripsi terkini</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">📱</div>
-                    <h3>Mudah</h3>
-                    <p>Interface yang user-friendly dan mudah digunakan siapa saja</p>
-                </div>
-            </div>
-        </section>
+
 
         <!-- Footer -->
         <footer>
