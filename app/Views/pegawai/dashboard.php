@@ -131,12 +131,6 @@
 <div class="container">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 page-title">Dashboard</h1>
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb breadcrumb-custom">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Dashboard</li>
-        </ol>
-    </nav>
 </div>
 </div>
 
@@ -144,7 +138,7 @@
 <div class="container dashboard-header p-4 mb-4">
     <div class="row align-items-center">
         <div class="col-md-8">
-            <h4 class="mb-2">Selamat Datang, <?= session('username') ?? 'Pegawai' ?>!</h4>
+            <h4 class="mb-2">Selamat Datang <?= session('role') ?>, <?= session('username') ?? 'Pegawai' ?>!</h4>
             <p class="mb-0 opacity-75">
                 <i class="fas fa-calendar-day me-2"></i>
                 <?= date('l, d F Y') ?>

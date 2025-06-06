@@ -64,7 +64,7 @@
                     <span>Data Barang</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('/logout') ?>">
+                <a class="nav-link" onclick="return confirm('Yakin ingin logout?')" href="<?= base_url('/logout') ?>">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     <span>Logout</span></a>
             </li>

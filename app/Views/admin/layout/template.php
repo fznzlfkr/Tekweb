@@ -52,19 +52,19 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="<?= base_url('/admin/dashboard') ?>">
                     <i class="fa-solid fa-house"></i>
                     <span>Dashboard</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="<?= base_url('/admin/data_barang') ?>">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Data Barang</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" onclick="return confirm('Yakin ingin logout?')" href="<?= base_url('/logout') ?>">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     <span>Logout</span></a>
             </li>
