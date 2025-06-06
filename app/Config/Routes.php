@@ -17,4 +17,8 @@ $routes->get('admin/index', 'Admin::index');
 $routes->get('admin/data_barang', 'Admin::dataBarang');
 
 $routes->get('pegawai/dashboard', 'Pegawai::index');
-$routes->get('/data_barang', 'Pegawai::dataBarang');
+$routes->get('pegawai/data_barang', 'Barang::index');
+$routes->get('pegawai/create_barang', 'Barang::create');
+$routes->post('pegawai/save_barang', 'Barang::store');
+$routes->get('pegawai/edit_barang/(:num)', 'Barang::edit/$1');
+$routes->post('pegawai/delete_barang/(:num)', 'Barang::delete/$1');
