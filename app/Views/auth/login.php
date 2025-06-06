@@ -1,58 +1,59 @@
 <?= $this->extend('layout/template') ?>
-
 <?= $this->section('content') ?>
-    <div class="container">
 
-        <!-- Outer Row -->
-        <div class="row justify-content-center">
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-4">
+                    <h3 class="text-center mb-4">Login</h3>
 
-            <div class="col-6">
+                    <?php if (session()->getFlashdata('pesan')): ?>
+                        <div class="alert alert-danger text-center">
+                            <?= session()->getFlashdata('pesan') ?>
+                        </div>
+                    <?php endif; ?>
 
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
-                                    </div>
-                                    <form class="user" action="<?= base_url('login_action') ?>" method="post">
-                                        <?= csrf_field() ?>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control form-control-user"
-                                                name="username" 
-                                                placeholder="Username">
-                                                <?= $validation->getError('username'); ?>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                name="password" placeholder="Password">
-                                                <?= $validation->getError('password'); ?>
-                                        </div>
-
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </button>
-                                       
-                                    </form>
-                                    <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="<?= base_url('register') ?>">Create an Account!</a>
-                                    </div>
-                                </div>
+                    <form method="POST" action="<?= base_url('login_action') ?>">
+                        <!-- Username -->
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text"
+                                name="username"
+                                id="username"
+                                class="form-control <?= ($validation->hasError('username')) ? 'is-invalid' : '' ?>"
+                                placeholder="Enter your username"
+                                value="<?= old('username') ?>" />
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('username'); ?>
                             </div>
                         </div>
-                    </div>
+
+                        <!-- Password -->
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password"
+                                name="password"
+                                id="password"
+                                class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : '' ?>"
+                                placeholder="Enter your password" />
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('password'); ?>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                Sign In
+                            </button>
+                        </div>
+                    </form>
+
                 </div>
-
             </div>
-
         </div>
-
     </div>
-<?= $this->endSection() ?>
+</div>
 
+<?= $this->endSection() ?>

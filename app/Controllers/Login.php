@@ -3,67 +3,71 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\UserModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class Login extends BaseController
 {
     public function index()
     {
-        $data = [
-            'validation' => service('validation'),
-        ];
-        return view('auth/login', $data);
-    }
-public function loginAction()
-{
-    $rules = [
-        'username' => 'required|min_length[3]|max_length[255]',
-        'password' => 'required|min_length[8]|max_length[255]',
-    ];
-
-    if (!$this->validate($rules)) {
         return view('auth/login', [
-            'validation' => $this->validator,
+            'validation' => \Config\Services::validation()
         ]);
     }
 
-    $username = $this->request->getPost('username');
-    $password = $this->request->getPost('password');
+   public function login_action()
+    {
+        $rules = [
+            'username' => 'required',
+            'password' => 'required',
+        ];
 
-    // Load model
-    $userModel = new \App\Models\UserModel();
+        if (!$this->validate($rules)) {
+            return view('auth/login', [
+                'validation' => $this->validator
+            ]);
+        }
 
-    // Cek user berdasarkan username
-    $user = $userModel->where('username', $username)->first();
+        $session = session();
+        $userModel = new UserModel();
 
-    if (!$user) {
-        return redirect()->back()->withInput()->with('error', 'Username tidak ditemukan.');
+        $username = $this->request->getVar('username');
+        $password = $this->request->getVar('password');
+
+        $user = $userModel->where('username', $username)->first();
+
+        if ($user) {
+            if (password_verify($password, $user['password'])) {
+                $session->set([
+                    'logged_in' => true,
+                    'role'   => $user['role'],
+                    'username'  => $user['username'],
+                ]);
+
+                switch ($user['role']) {
+                    case 'Admin':
+                        return redirect()->to('admin/index');
+                    case 'Pegawai':
+                        return redirect()->to('pegawai/dashboard');
+                    default:
+                        $session->setFlashdata('pesan', 'Akun anda belum terdaftar!');
+                        return redirect()->to(base_url('login'));
+                }
+            } else {
+                $session->setFlashdata('pesan', 'Password salah, silakan coba lagi!');
+                return redirect()->to(base_url('login'));
+            }
+        } else {
+            $session->setFlashdata('pesan', 'Username tidak ditemukan!');
+            return redirect()->to(base_url('login'));
+        }
     }
 
-    // Verifikasi password
-    if (!password_verify($password, $user['password'])) {
-        return redirect()->back()->withInput()->with('error', 'Password salah.');
+    public function logout()
+    {
+        session()->destroy();
+        return redirect()->to(base_url('login'));
     }
-
-    // Simpan data ke session
-    $session = session();
-    $session->set([
-        'user_id'   => $user['id'],
-        'username'  => $user['username'],
-        'role'      => $user['role'],
-        'logged_in' => true,
-    ]);
-
-    // Redirect berdasarkan role
-    switch ($user['role']) {
-        case 'admin':
-            return redirect()->to('/admin/dashboard');
-        case 'customer':
-            return redirect()->to('/pegawai/dashboard');
-        default:
-            return redirect()->to('/login')->with('error', 'Role tidak dikenali.');
-    }
-}
 
 
 }

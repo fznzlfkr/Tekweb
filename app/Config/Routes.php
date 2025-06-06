@@ -1,3 +1,4 @@
+
 <?php
 
 use CodeIgniter\Router\RouteCollection;
@@ -7,8 +8,13 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 $routes->get('/login', 'Login::index');
-$routes->post('login_action', 'Login::loginAction');
-$routes->get('register', 'Register::index');
+$routes->post('/login_action', 'Login::login_action'); // sesuai action form
+$routes->get('/logout', 'Login::logout');
 
-$routes->get('/dashboard', 'Pegawai::index');
+
+
+$routes->get('admin/index', 'Admin::index');
+$routes->get('admin/data_barang', 'Admin::dataBarang');
+
+$routes->get('pegawai/dashboard', 'Pegawai::index');
 $routes->get('/data_barang', 'Pegawai::dataBarang');

@@ -33,7 +33,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class="fa-solid fa-people-roof"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">Management Barang</div>
             </a>
@@ -46,7 +46,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Dashboard
+                Dashboard pegawai
             </div>
 
 
@@ -144,7 +144,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; Kelompok 5 <?= date('Y'); ?></span>
                     </div>
                 </div>
             </footer>
