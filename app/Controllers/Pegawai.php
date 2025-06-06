@@ -9,7 +9,8 @@ class Pegawai extends BaseController
 {
     public function index()
     {
-        return view('pegawai/dashboard');
+        $data=['title' => 'Dashboard Pegawai'];
+        return view('pegawai/dashboard', $data);
     }
     public function dataBarang()
     {
