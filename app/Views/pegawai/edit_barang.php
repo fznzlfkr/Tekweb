@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col">
                 <h2><?= $title ?></h2>
-                <form action="<?= base_url('pegawai/save_barang') ?>" method="post">
+                <form action="<?= base_url('pegawai/update_barang/' . $barang['id']) ?>" method="post">
                     <div class="form-group">
                         <label for="nama_barang">Nama Barang</label>
                         <input type="text" class="form-control" id="nama_barang" name="nama_barang" value="<?= $barang['nama_barang'] ?>" required>

@@ -60,26 +60,25 @@ class Barang extends BaseController
 
         return view('pegawai/edit_barang', $data);
     }
-    public function update($id)
-    {
-        $barangModel = new BarangModel();
+public function update($id)
+{
+    $barangModel = new BarangModel();
 
-        $data = [
-            'id' => $id,
-            'nama_barang' => $this->request->getVar('nama_barang'),
-            'varian' => $this->request->getVar('varian'),
-            'harga_beli' => $this->request->getVar('harga_beli'),
-            'harga_jual' => $this->request->getVar('harga_jual'),
-        ];
+    $data = [
+        'nama_barang' => $this->request->getVar('nama_barang'),
+        'varian' => $this->request->getVar('varian'),
+        'harga_beli' => $this->request->getVar('harga_beli'),
+        'harga_jual' => $this->request->getVar('harga_jual'),
+    ];
 
-        if ($barangModel->update($id, $data)) {
-
-            // If the update is successful, redirect to the data_barang page with a success message
-            return redirect()->to('/pegawai/data_barang')->with('success', 'Barang berhasil diupdate.');
-        } else {
-            return redirect()->back()->withInput()->with('errors', $barangModel->errors());
-        }
+    if ($barangModel->update($id, $data)) {
+        return redirect()->to('/pegawai/data_barang')->with('success', 'Barang berhasil diupdate.');
+    } else {
+        return redirect()->back()->withInput()->with('errors', $barangModel->errors());
     }
+}
+
+ 
     public function delete($id)
     {
         $barangModel = new BarangModel();
