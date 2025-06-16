@@ -33,6 +33,8 @@ class Login extends BaseController
 
         $username = $this->request->getVar('username');
         $password = $this->request->getVar('password');
+        $role = $this->request->getVar('role');
+        $no_handphone = $this->request->getVar('no_handphone');
 
         $user = $userModel->where('username', $username)->first();
 

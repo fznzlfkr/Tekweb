@@ -14,8 +14,8 @@
     <?php if (!empty($pegawai)) : ?>
         <div class="card shadow-sm">
             <div class="card-body">
-                <h5 class="card-title text-primary"><?= esc($pegawai['nama'] ?? '-') ?></h5>
-                <p><strong>NIP:</strong> <?= esc($pegawai['nip'] ?? '-') ?></p>
+                <h5 class="card-title text-primary"><?= session('username') ?? '-' ?></h5>
+                <p><strong>NIP:</strong> <?= session('no_hanphone') ?? '-' ?></p>
                 <p><strong>Jenis Kelamin:</strong> <?= esc($pegawai['jenis_kelamin'] ?? '-') ?></p>
                 <p><strong>Alamat:</strong> <?= esc($pegawai['alamat'] ?? '-') ?></p>
                 <p><strong>No. Handphone:</strong> <?= esc($pegawai['no_handphone'] ?? '-') ?></p>

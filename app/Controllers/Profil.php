@@ -10,9 +10,7 @@ class Profil extends BaseController
     public function index()
 {
     $pegawaiId = session()->get('pegawai_id');
-    if (!$pegawaiId) {
-        echo "Session pegawai_id tidak ada!"; exit;
-    }
+
 
     $pegawaiModel = new PegawaiModel();
     // Untuk sementara
