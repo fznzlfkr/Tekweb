@@ -32,7 +32,6 @@ $routes->group('pegawai', ['filter' => 'auth'], function($routes) {
     $routes->post('delete_barang/(:num)', 'Barang::delete/$1');
 });
 
-<<<<<<< HEAD
 $routes->get('pegawai/dashboard', 'Pegawai::index');
 $routes->get('pegawai/data_barang', 'Barang::index');
 $routes->get('pegawai/create_barang', 'Barang::create');
@@ -41,5 +40,5 @@ $routes->get('pegawai/edit_barang/(:num)', 'Barang::edit/$1');
 $routes->post('pegawai/update_barang/(:num)', 'Barang::update/$1');
 $routes->post('pegawai/delete_barang/(:num)', 'Barang::delete/$1');
 $routes->get('pegawai/profil', 'Profil::index');
-=======
->>>>>>> 1bd5b5d6929f95a8adc5941e830ad21b09460fd3
+
+

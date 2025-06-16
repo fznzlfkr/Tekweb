@@ -2,7 +2,6 @@
 <?= $this->section('content') ?>
     <div class="container">
         <h2>Data Barang</h2>
-        <a href="<?= base_url('pegawai/create_barang') ?>" class="btn btn-primary mb-3">Tambah Barang</a>
         <?php if(session()->getFlashdata('success')): ?>
             <div class="alert alert-success">
                 <?= session()->getFlashdata('success') ?>

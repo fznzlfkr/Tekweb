@@ -64,6 +64,11 @@
                     <span>Data Barang</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('/pegawai/create_barang') ?>">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Barang Masuk</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" onclick="return confirm('Yakin ingin logout?')" href="<?= base_url('/logout') ?>">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     <span>Logout</span></a>
@@ -103,13 +108,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<<<<<<< HEAD
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['username'] ?></span>
-
-=======
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= session()->get('username') ?></span>
->>>>>>> 1bd5b5d6929f95a8adc5941e830ad21b09460fd3
-                            </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
