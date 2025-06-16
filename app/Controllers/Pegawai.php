@@ -16,4 +16,6 @@ class Pegawai extends BaseController
     {
         return view('pegawai/data_barang');
     }
+
+
 }

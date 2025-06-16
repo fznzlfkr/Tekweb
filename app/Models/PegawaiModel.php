@@ -43,4 +43,12 @@ class PegawaiModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+     public function getProfilLengkap($idPegawai)
+    {
+        return $this->select('pegawai.*, users.username, users.role, users.status')
+                    ->join('users', 'users.id_pegawai = pegawai.id')
+                    ->where('pegawai.id', $idPegawai)
+                    ->first();
+    }
 }
