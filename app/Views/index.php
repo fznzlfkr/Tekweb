@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome - Platform Digital</title>
+    <title>Welcome</title>
     <style>
         * {
             margin: 0;
@@ -13,13 +13,24 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(rgba(0, 123, 255, 0.8), rgba(0, 123, 255, 0.8)), 
-                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            color: white;
             min-height: 100vh;
-            color: #333;
+            position: relative;
+            z-index: 0;
+        }
+
+        /* Background Overlay */
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(58, 123, 213, 0.6), rgba(58, 96, 115, 0.6)),
+                        url("<?= base_url('img/bg.jpg') ?>") no-repeat center bottom;
+            background-size: cover;
+            background-attachment: fixed;
+            z-index: -1;
         }
 
         .container {
@@ -30,154 +41,102 @@
 
         /* Header */
         header {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             padding: 1rem 2rem;
-        }
-
-        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
+            background: transparent;
+            position: relative;
+            z-index: 2;
         }
 
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
-            color: #007bff;
+            color: white;
         }
 
-        .nav-buttons {
+        nav ul {
             display: flex;
-            gap: 1rem;
+            list-style: none;
+            gap: 1.5rem;
         }
 
-        .btn {
-            padding: 0.6rem 1.5rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 500;
+        nav ul li a {
+            color: white;
             text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
         }
 
-        .btn-outline {
-            background: transparent;
-            color: #007bff;
-            border: 2px solid #007bff;
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: white;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
         }
 
-        .btn-outline:hover {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            backdrop-filter: blur(10px);
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            transform: scaleX(1);
         }
 
-        .btn-primary {
-            background: #ff6b35;
-            color: white;
-            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
-        }
-
-        .btn-primary:hover {
-            background: #e55a2b;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
-        }
-
-        /* Main Content */
+        /* Hero Section */
         main {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
-        }
-
-        .hero {
             text-align: center;
-            max-width: 600px;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
-            color: white;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.4);
         }
 
         .hero p {
             font-size: 1.1rem;
             margin-bottom: 2rem;
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.6;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            color: rgba(255,255,255,0.9);
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-hero {
+        .btn-start {
             padding: 0.8rem 2rem;
             font-size: 1rem;
-            min-width: 140px;
-        }
-
-        /* Features */
-        .features {
+            font-weight: bold;
+            border: none;
             background: white;
-            padding: 3rem 2rem;
-            text-align: center;
+            color: #3a7bd5;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            text-decoration: none;
         }
 
-        .features h2 {
-            margin-bottom: 2rem;
-            color: #333;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .feature {
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .feature-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature h3 {
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
-
-        .feature p {
-            color: #666;
-            font-size: 0.9rem;
+        .btn-start:hover {
+            background-color: #f0f0f0;
         }
 
         /* Footer */
         footer {
-            background: #333;
-            color: white;
             text-align: center;
-            padding: 2rem;
+            padding: 1.5rem;
+            background: transparent;
+            color: white;
         }
 
         /* Responsive */
@@ -185,72 +144,51 @@
             .hero h1 {
                 font-size: 2rem;
             }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .nav-buttons {
+
+            nav ul {
                 flex-direction: column;
                 gap: 0.5rem;
+                align-items: center;
             }
-            
-            nav {
+
+            header {
                 flex-direction: column;
-                gap: 1rem;
+                align-items: flex-start;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Background Image & Gradient -->
+    <div class="bg-overlay"></div>
+
+    <!-- Container -->
     <div class="container">
+
         <!-- Header -->
         <header>
+            <div class="logo">Management Barang</div>
             <nav>
-                <div class="logo">Management Barang</div>
-
+                <ul>
+                    <li><a href="#" class="active">Beranda</a></li>
+                    <li><a href="#">Tentang</a></li>
+                </ul>
             </nav>
         </header>
 
-        <!-- Main Content -->
+        <!-- Main Hero Content -->
         <main>
             <div class="hero">
-                <h1>Selamat Datang</h1>
-                <p>Di Aplikasi Management Barang kelompok 5</p>
-                
-                <div class="hero-buttons">
-                    <a href="<?= base_url('login') ?>" class="btn btn-primary btn-hero" >Mulai Sekarang</a>
-                </div>
+                <h1>SELAMAT DATANG</h1>
+                <p>Selamat datang di Aplikasi Management Barang kelompok 5. Ayo mulai kelola barangmu dengan cara digital dan efisien!</p>
+                <a href="<?= base_url('login') ?>" class="btn-start">Masuk</a>
             </div>
         </main>
-
-
 
         <!-- Footer -->
         <footer>
             <p>&copy; Kelompok 5 <?= date('Y') ?></p>
         </footer>
     </div>
-
-    <script>
-        function goToLogin() {
-            alert('Mengarahkan ke halaman login...');
-            // window.location.href = 'login.html';
-        }
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
 </body>
 </html>

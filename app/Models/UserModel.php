@@ -12,7 +12,8 @@ class UserModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_pegawai', 'username', 'password', 'status', 'role'];
+    protected $allowedFields = ['id_pegawai', 'username', 'email', 'password', 'status', 'role'];
+
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
