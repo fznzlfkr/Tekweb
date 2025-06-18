@@ -45,7 +45,7 @@ $routes->group('pegawai', ['filter' => 'auth'], function ($routes) {
     $routes->get('history', 'Pegawai::history');
 });
 
-<<<<<<< HEAD
+// <<<<<<< HEAD
 $routes->post('/profil/save', 'Profil::save');
 
 
