@@ -12,7 +12,7 @@
         .profile-card { max-width: 600px; margin: auto; border-radius: 1rem; }
 =======
         body {
-            background: linear-gradient(135deg,rgb(255, 255, 255),rgb(255, 255, 255));
+            background: linear-gradient(135deg,rgb(255, 255, 255),rgb(84, 154, 224));
             font-family: 'Segoe UI', sans-serif;
         }
 
