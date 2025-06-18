@@ -54,8 +54,10 @@ $routes->group('pegawai', ['filter' => 'auth'], function ($routes) {
     $routes->get('history', 'Pegawai::history');
 
     // Edit Profil Pegawai (opsional)
-    $routes->get('edit/(:num)', 'Pegawai::edit/$1');
-    $routes->post('update/(:num)', 'Pegawai::update/$1');
+    $routes->get('profil', 'Profil::index');
+    $routes->get('profil/edit', 'Profil::edit');
+    $routes->post('profil/update', 'Profil::update');
+    
 });
 
 $routes->post('/profil/save', 'Profil::save');

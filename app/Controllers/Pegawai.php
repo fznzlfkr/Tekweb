@@ -4,10 +4,8 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\PegawaiModel;
-
 use App\Models\BarangModel;
 use App\Models\HistoryModel;
-
 class Pegawai extends BaseController
 {
     // Halaman utama dashboard pegawai
@@ -189,16 +187,5 @@ class Pegawai extends BaseController
         $pegawaiModel->update($id, $data);
 
         return redirect()->to(base_url('pegawai/profil/' . $id))->with('success', 'Data berhasil diperbarui');
-    }
-    public function history()
-    {
-        $db = \Config\Database::connect();
-        $builder = $db->table('history');
-        $history = $builder->orderBy('tanggal', 'DESC')->get()->getResultArray();
-
-        return view('pegawai/history', [
-            'title' => 'Riwayat Barang',
-            'history' => $history
-        ]);
     }
 }

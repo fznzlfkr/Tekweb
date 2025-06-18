@@ -217,30 +217,51 @@
 
 <main id="content">
 
-  <section class="dashboard-cards" aria-label="Dashboard summary cards">
-    <article class="card-dashboard" role="region" aria-labelledby="card-stock-title">
-      <div class="icon-circle"><span class="material-icons">inventory_2</span></div>
-      <h2 class="card-title" id="card-stock-title">Jumlah Barang</h2>
-      <div class="card-value" id="totalStock"><?= esc($jumlahBarang) ?></div>
-    </article>
-    <article class="card-dashboard" role="region" aria-labelledby="card-incoming-title">
-  <div class="icon-circle"><span class="material-icons">add_shopping_cart</span></div>
-  <h2 class="card-title" id="card-incoming-title">Barang Masuk</h2>
-  <div class="card-value" id="totalIncoming"><?= esc($jumlahMasuk) ?></div>
+<section class="dashboard-cards" aria-label="Dashboard summary cards">
+  <!-- Jumlah Barang -->
+  <article class="card-dashboard" role="region" aria-labelledby="card-stock-title">
+    <div class="icon-circle"><span class="material-icons">inventory_2</span></div>
+    <h2 class="card-title" id="card-stock-title">Jumlah Barang</h2>
+    <div class="card-value" id="totalStock"><?= esc($jumlahBarang) ?></div>
+  </article>
+
+  <!-- Barang Masuk -->
+  <article class="card-dashboard" role="region" aria-labelledby="card-incoming-title">
+    <div class="icon-circle"><span class="material-icons">add_shopping_cart</span></div>
+    <h2 class="card-title" id="card-incoming-title">Barang Masuk</h2>
+    <div class="card-value" id="totalIncoming"><?= esc($jumlahMasuk) ?></div>
+  </article>
+
+  <!-- Barang Keluar -->
+  <article class="card-dashboard" role="region" aria-labelledby="card-outgoing-title">
+    <div class="icon-circle"><span class="material-icons">shopping_cart_checkout</span></div>
+    <h2 class="card-title" id="card-outgoing-title">Barang Keluar</h2>
+    <div class="card-value" id="totalOutgoing"><?= esc($jumlahKeluar) ?></div>
+  </article>
+
+  <!-- Jumlah Pegawai -->
+  <article class="card-dashboard" role="region" aria-labelledby="card-users-title">
+    <div class="icon-circle"><span class="material-icons">group</span></div>
+    <h2 class="card-title" id="card-users-title">Jumlah Pegawai</h2>
+    <div class="card-value" id="totalUsers"><?= esc($jumlahPegawai) ?></div>
+  </article>
+
+<!-- Harga Beli Barang -->
+<article class="card-dashboard" role="region" aria-labelledby="card-harga-beli-title">
+  <div class="icon-circle"><span class="material-icons">attach_money</span></div>
+  <h2 class="card-title" id="card-harga-beli-title">Harga Beli Barang</h2>
+  <div class="card-value" id="totalHarga"><?= esc(number_format($totalHargaBarang, 0, ',', '.')) ?></div>
 </article>
 
-<article class="card-dashboard" role="region" aria-labelledby="card-outgoing-title">
-  <div class="icon-circle"><span class="material-icons">shopping_cart_checkout</span></div>
-  <h2 class="card-title" id="card-outgoing-title">Barang Keluar</h2>
-  <div class="card-value" id="totalOutgoing"><?= esc($jumlahKeluar) ?></div>
+<!-- Jumlah Harga Barang Keluar -->
+<article class="card-dashboard text-center" role="region" aria-labelledby="card-harga-keluar-title">
+  <div class="icon-circle mx-auto"><span class="material-icons">money_off</span></div>
+  <h2 class="card-title" id="card-harga-keluar-title">Jumlah Harga Barang Keluar</h2>
+  <div class="card-value" id="totalHargaKeluar"><?= esc(number_format($totalHargaKeluar, 0, ',', '.')) ?></div>
 </article>
-    <article class="card-dashboard" role="region" aria-labelledby="card-users-title">
-      <div class="icon-circle"><span class="material-icons">group</span></div>
-      <h2 class="card-title" id="card-users-title">Jumlah Pegawai</h2>
-      <div class="card-value" id="totalUsers"><?= esc($jumlahPegawai) ?></div>
-    </article>
-  </section>
+</section>
 
+  
   <!-- Chart Section -->
   <section class="recent-activity" aria-label="Grafik statistik">
     <h3>Statistik Barang</h3>
