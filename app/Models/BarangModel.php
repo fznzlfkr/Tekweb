@@ -12,7 +12,7 @@ class BarangModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama_barang', 'varian', 'harga_beli', 'harga_jual'];
+    protected $allowedFields    = ['nama_barang', 'varian','stok', 'harga_beli', 'harga_jual'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -30,7 +30,7 @@ class BarangModel extends Model
     // Validation
     protected $validationRules      = [];
     protected $validationMessages   = [];
-    protected $skipValidation       = false;
+    protected $skipValidation       = true;
     protected $cleanValidationRules = true;
 
     // Callbacks

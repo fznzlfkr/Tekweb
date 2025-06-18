@@ -34,6 +34,7 @@ class Barang extends BaseController
         $data = [
             'nama_barang' => $this->request->getPost('nama_barang'),
             'varian' => $this->request->getPost('varian'),
+            'stok' => $this->request->getPost('stok'),
             'harga_beli' => $this->request->getPost('harga_beli'),
             'harga_jual' => $this->request->getPost('harga_jual'),
         ];
@@ -67,6 +68,7 @@ public function update($id)
     $data = [
         'nama_barang' => $this->request->getVar('nama_barang'),
         'varian' => $this->request->getVar('varian'),
+        'stok' => $this->request->getVar('stok'),
         'harga_beli' => $this->request->getVar('harga_beli'),
         'harga_jual' => $this->request->getVar('harga_jual'),
     ];

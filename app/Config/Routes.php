@@ -6,10 +6,10 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-// Halaman utama
+// ROUTE UMUM (Tanpa Filter)
 $routes->get('/', 'Home::index');
 
-// Login & Register (tanpa filter)
+// Login & Register
 $routes->get('/login', 'Login::index');
 $routes->post('/login_action', 'Login::login_action');
 $routes->get('/logout', 'Login::logout');
@@ -17,21 +17,35 @@ $routes->get('/logout', 'Login::logout');
 $routes->get('/register', 'Register::index');
 $routes->post('/register_action', 'Register::proses');
 
-$routes->group('admin', ['filter' => 'auth'], function($routes) {
+// ROUTE UNTUK ADMIN
+$routes->group('admin', ['filter' => 'auth'], function ($routes) {
     $routes->get('index', 'Admin::index');
     $routes->get('data_barang', 'Admin::dataBarang');
 });
 
-$routes->group('pegawai', ['filter' => 'auth'], function($routes) {
+// ROUTE UNTUK PEGAWAI
+$routes->group('pegawai', ['filter' => 'auth'], function ($routes) {
+    // Dashboard & Profil
     $routes->get('dashboard', 'Pegawai::index');
+    $routes->get('profil', 'Profil::index');
+
+    // Barang (CRUD)
     $routes->get('data_barang', 'Barang::index');
     $routes->get('create_barang', 'Barang::create');
-    $routes->post('save_barang', 'Barang::store');
+    $routes->post('save_barang', 'Pegawai::save_barang'); // <=== pindah ke sini
     $routes->get('edit_barang/(:num)', 'Barang::edit/$1');
     $routes->post('update_barang/(:num)', 'Barang::update/$1');
     $routes->post('delete_barang/(:num)', 'Barang::delete/$1');
+
+    // Barang Keluar
+    $routes->get('barang_keluar', 'Pegawai::barang_keluar');
+    $routes->post('proses_keluar/(:num)', 'Pegawai::proses_keluar/$1');
+
+    // History
+    $routes->get('history', 'Pegawai::history');
 });
 
+<<<<<<< HEAD
 $routes->post('/profil/save', 'Profil::save');
 
 

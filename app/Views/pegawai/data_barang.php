@@ -13,6 +13,7 @@
                     <th>No</th>
                     <th>Nama Barang</th>
                     <th>Varian</th>
+                    <th>Stok</th>
                     <th>Harga Beli</th>
                     <th>Harga Jual</th>
                     <th>Aksi</th>
@@ -25,6 +26,7 @@
                     <td><?= $no++ ?></td>
                     <td><?= $brg['nama_barang'] ?></td>
                     <td><?= $brg['varian'] ?></td>
+                    <td><?= $brg['stok'] ?></td>
                     <td><?= $brg['harga_beli'] ?></td>
                     <td><?= $brg['harga_jual'] ?></td>
                     <td>

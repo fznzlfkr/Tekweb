@@ -14,6 +14,10 @@
                         <input type="text" class="form-control" id="nama_barang" name="varian" value="<?= $barang['varian'] ?>" required>
                     </div>
                     <div class="form-group">
+                        <label for="nama_barang">Stok</label>
+                        <input type="text" class="form-control" id="nama_barang" name="stok" value="<?= $barang['stok'] ?>" required>
+                    </div>
+                    <div class="form-group">
                         <label for="harga">Harga Beli</label>
                         <input type="text" class="form-control" id="harga" name="harga_beli" value="<?= $barang['harga_beli'] ?>" required>
                     </div>

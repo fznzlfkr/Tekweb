@@ -12,7 +12,8 @@
     <title>SB Admin 2 - Blank</title>
 
     <!-- Custom fonts for this template-->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"
+        type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -42,7 +43,7 @@
             <hr class="sidebar-divider my-3">
 
             <!-- Nav Item - Dashboard -->
-           
+
 
             <!-- Heading -->
             <div class="sidebar-heading">
@@ -67,6 +68,16 @@
                 <a class="nav-link" href="<?= base_url('/pegawai/create_barang') ?>">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Barang Masuk</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('/pegawai/barang_keluar') ?>">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Barang Keluar</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('/pegawai/history') ?>">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>History</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" onclick="return confirm('Yakin ingin logout?')" href="<?= base_url('/logout') ?>">
@@ -106,17 +117,17 @@
 
                         <!-- Nav Item - User Info (No Dropdown) -->
                         <li class="nav-item"><a href="<?= base_url('pegawai/profil') ?>">
-                            <span class="nav-link text-gray-600 small">
-                                <i class="fas fa-user mr-1"></i>
-                                <?= $_SESSION['username'] ?>
-                            </span>
-                        </a>
+                                <span class="nav-link text-gray-600 small">
+                                    <i class="fas fa-user mr-1"></i>
+                                    <?= $_SESSION['username'] ?>
+                                </span>
+                            </a>
                         </li>
                     </ul>
 
                 </nav>
                 <!-- End of Topbar -->
-                 
+
 
 
                 <?= $this->renderSection('content') ?>
