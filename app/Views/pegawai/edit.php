@@ -2,8 +2,11 @@
 
 
 <!DOCTYPE html>
+
 <html lang="id">
+
 <head>
+
     <meta charset="UTF-8">
     <title><?= esc($title) ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,6 +16,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
+
         body {
             background-color: #f8f9fa;
             font-size: 15px;
@@ -34,7 +38,9 @@
         }
         .form-label {
             font-weight: 600;
+
             color: #495057;
+
         }
         .profile-img {
             width: 150px;
@@ -57,8 +63,39 @@
                 height: 100px;
             }
         }
+
+        .btn-sm-custom {
+
+            padding: 5px 12px;
+
+            font-size: 13px;
+
+        }
+
+        .btn-group-custom {
+
+            margin-top: 12px;
+
+        }
+
+
+
+        @media (max-width: 768px) {
+
+            .profile-img {
+
+                width: 100px;
+
+                height: 100px;
+
+            }
+
+        }
+
     </style>
+
 </head>
+
 <body>
 
 <div class="container mt-4">
@@ -115,7 +152,10 @@
             </div>
         </form>
     </div>
+
 </div>
+
+
 
 </body>
 </html>
