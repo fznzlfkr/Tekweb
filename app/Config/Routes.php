@@ -40,5 +40,10 @@ $routes->get('pegawai/edit_barang/(:num)', 'Barang::edit/$1');
 $routes->post('pegawai/update_barang/(:num)', 'Barang::update/$1');
 $routes->post('pegawai/delete_barang/(:num)', 'Barang::delete/$1');
 $routes->get('pegawai/profil', 'Profil::index');
+$routes->get('pegawai/edit/(:num)', 'Pegawai::edit/$1');
+$routes->post('pegawai/update/(:num)', 'Pegawai::update/$1');
+$routes->get('pegawai/profil/(:num)', 'Pegawai::profil/$1');
+$routes->post('pegawai/update/(:num)', 'Pegawai::update/$1');
+
 
 

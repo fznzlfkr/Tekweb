@@ -2,29 +2,22 @@
 
 namespace App\Controllers;
 
-use App\Controllers\BaseController;
 use App\Models\PegawaiModel;
 
 class Profil extends BaseController
 {
-    public function index()
+   public function index()
 {
-    $pegawaiId = session()->get('pegawai_id');
+    $model = new \App\Models\PegawaiModel();
 
+    $data['title'] = 'Profil Pegawai'; // Tambahkan ini
+    $data['pegawai'] = $model->getProfilLengkap(1);
 
-    $pegawaiModel = new PegawaiModel();
-    // Untuk sementara
-    $pegawai = $pegawaiModel->find($pegawaiId);
-
-
-    if (!$pegawai) {
-        echo "Data pegawai tidak ditemukan untuk ID: " . $pegawaiId; exit;
+    if (!$data['pegawai']) {
+        return 'Data pegawai tidak ditemukan.';
     }
 
-    return view('pegawai/profil', [
-        'title' => 'Profil Pegawai',
-        'pegawai' => $pegawai
-    ]);
+    return view('pegawai/profil', $data);
 }
 
 }
