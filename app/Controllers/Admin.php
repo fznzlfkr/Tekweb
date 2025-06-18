@@ -15,6 +15,7 @@ class Admin extends BaseController
         $pegawaiModel = new PegawaiModel();
         $historyModel = new HistoryModel();
 
+        // Ambil data
         $jumlahBarang = $barangModel->countAll();
         $jumlahPegawai = $pegawaiModel->countAll();
         $dataBarang = $barangModel->findAll();
@@ -31,25 +32,42 @@ class Admin extends BaseController
             ->selectSum('jumlah')
             ->first()['jumlah'] ?? 0;
 
-        // Ambil data 5 transaksi terbaru masing-masing
+        // Ambil semua data history
         $dataMasuk = $historyModel
             ->where('tipe', 'masuk')
             ->orderBy('tanggal', 'DESC')
-            ->findAll(5);
+            ->findAll();
 
         $dataKeluar = $historyModel
             ->where('tipe', 'keluar')
             ->orderBy('tanggal', 'DESC')
-            ->findAll(5);
+            ->findAll();
+
+        // Hitung total harga beli dari semua barang (tanpa dikali stok)
+        $totalHargaBarang = 0;
+        foreach ($dataBarang as $barang) {
+            $totalHargaBarang += $barang['harga_beli'];
+        }
+
+
+        // Hitung total harga barang keluar (jumlah * harga_jual per item)
+        $totalHargaKeluar = 0;
+        foreach ($dataKeluar as $item) {
+            $barang = $barangModel->where('nama_barang', $item['nama_barang'])->first();
+            $harga = $barang['harga_jual'] ?? 0;
+            $totalHargaKeluar += $item['jumlah'] * $harga;
+        }
 
         $data = [
-            'jumlahBarang'   => $jumlahBarang,
-            'jumlahPegawai'  => $jumlahPegawai,
-            'jumlahMasuk'    => $jumlahMasuk,
-            'jumlahKeluar'   => $jumlahKeluar,
-            'dataBarang'     => $dataBarang,
-            'dataMasuk'      => $dataMasuk,
-            'dataKeluar'     => $dataKeluar,
+            'jumlahBarang'     => $jumlahBarang,
+            'jumlahPegawai'    => $jumlahPegawai,
+            'jumlahMasuk'      => $jumlahMasuk,
+            'jumlahKeluar'     => $jumlahKeluar,
+            'dataBarang'       => $dataBarang,
+            'dataMasuk'        => $dataMasuk,
+            'dataKeluar'       => $dataKeluar,
+            'totalHargaBarang' => $totalHargaBarang,
+            'totalHargaKeluar' => $totalHargaKeluar,
         ];
 
         return view('admin/dashboard', $data);
