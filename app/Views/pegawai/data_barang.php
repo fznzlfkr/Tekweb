@@ -33,7 +33,8 @@
                         <a href="<?= base_url('pegawai/edit_barang/' . $brg['id']) ?>" class="btn btn-warning">Edit</a>
                         <form action="<?= base_url('pegawai/delete_barang/' . $brg['id']) ?>" method="post" style="display:inline;">
                             <input type="hidden" name="_method" value="delete">
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
+                            <button type="button" class="btn btn-danger btnHapus">Hapus</button>
+
                         </form>
                     </td>
                 </tr>

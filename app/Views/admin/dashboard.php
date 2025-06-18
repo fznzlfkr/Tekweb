@@ -8,6 +8,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 <!-- Google Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
   :root {
     --primary-color: #3a7bd5;
@@ -76,6 +77,22 @@
     align-items: center;
     gap: 0.75rem;
   }
+
+  .btn-logout-custom {
+    color: #ffffff !important;
+    background-color: #e74a3b;
+    border-radius: 0.35rem;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-logout-custom:hover {
+    background-color: #c0392b;
+    color: #fff;
+    transform: scale(1.03);
+    box-shadow: 0 4px 10px rgba(231, 74, 59, 0.4);
+}
+
 
   .avatar {
     width: 36px;
@@ -189,7 +206,11 @@
   <div class="header-right">
     <div class="user-profile">
       <div class="username"><?= session("username")?></div>
-      <a href="<?= base_url('logout') ?>" class="btn btn-sm btn-outline-light ms-2" onclick="return confirm('Yakin ingin logout?')">Logout</a>
+      <a class="nav-link btn-logout-custom" href="#" id="btnLogout">
+    <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>
+    <span>Logout</span>
+</a>
+
     </div>
   </div>
 </header>
@@ -203,15 +224,16 @@
       <div class="card-value" id="totalStock"><?= esc($jumlahBarang) ?></div>
     </article>
     <article class="card-dashboard" role="region" aria-labelledby="card-incoming-title">
-      <div class="icon-circle"><span class="material-icons">add_shopping_cart</span></div>
-      <h2 class="card-title" id="card-incoming-title">Barang Masuk</h2>
-      <div class="card-value" id="totalIncoming">350</div>
-    </article>
-    <article class="card-dashboard" role="region" aria-labelledby="card-outgoing-title">
-      <div class="icon-circle"><span class="material-icons">shopping_cart_checkout</span></div>
-      <h2 class="card-title" id="card-outgoing-title">Barang Keluar</h2>
-      <div class="card-value" id="totalOutgoing">275</div>
-    </article>
+  <div class="icon-circle"><span class="material-icons">add_shopping_cart</span></div>
+  <h2 class="card-title" id="card-incoming-title">Barang Masuk</h2>
+  <div class="card-value" id="totalIncoming"><?= esc($jumlahMasuk) ?></div>
+</article>
+
+<article class="card-dashboard" role="region" aria-labelledby="card-outgoing-title">
+  <div class="icon-circle"><span class="material-icons">shopping_cart_checkout</span></div>
+  <h2 class="card-title" id="card-outgoing-title">Barang Keluar</h2>
+  <div class="card-value" id="totalOutgoing"><?= esc($jumlahKeluar) ?></div>
+</article>
     <article class="card-dashboard" role="region" aria-labelledby="card-users-title">
       <div class="icon-circle"><span class="material-icons">group</span></div>
       <h2 class="card-title" id="card-users-title">Jumlah Pegawai</h2>
@@ -328,26 +350,27 @@
   const dashboardChart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['Jumlah Barang', 'Barang Masuk', 'Barang Keluar', 'Jumlah Pegawai'],
-      datasets: [{
-        label: 'Statistik',
-        data: [<?= $jumlahBarang ?>, 350, 275, <?= $jumlahPegawai ?>],
-        backgroundColor: [
-          'rgba(58, 123, 213, 0.6)',
-          'rgba(34, 197, 94, 0.6)',
-          'rgba(234, 179, 8, 0.6)',
-          'rgba(239, 68, 68, 0.6)'
-        ],
-        borderColor: [
-          'rgba(58, 123, 213, 1)',
-          'rgba(34, 197, 94, 1)',
-          'rgba(234, 179, 8, 1)',
-          'rgba(239, 68, 68, 1)'
-        ],
-        borderWidth: 1,
-        borderRadius: 8
-      }]
-    },
+  labels: ['Jumlah Barang', 'Barang Masuk', 'Barang Keluar', 'Jumlah Pegawai'],
+  datasets: [{
+    label: 'Statistik',
+    data: [<?= $jumlahBarang ?>, <?= $jumlahMasuk ?>, <?= $jumlahKeluar ?>, <?= $jumlahPegawai ?>],
+    backgroundColor: [
+      'rgba(58, 123, 213, 0.6)',
+      'rgba(34, 197, 94, 0.6)',
+      'rgba(234, 179, 8, 0.6)',
+      'rgba(239, 68, 68, 0.6)'
+    ],
+    borderColor: [
+      'rgba(58, 123, 213, 1)',
+      'rgba(34, 197, 94, 1)',
+      'rgba(234, 179, 8, 1)',
+      'rgba(239, 68, 68, 1)'
+    ],
+    borderWidth: 1,
+    borderRadius: 8
+  }]
+},
+
     options: {
       responsive: true,
       plugins: {
@@ -371,6 +394,27 @@
       }
     }
   });
+  <!-- SweetAlert2 -->
+
+
+    document.getElementById('btnLogout').addEventListener('click', function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Yakin ingin logout?',
+            text: "Kamu akan keluar dari sistem.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Logout',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "<?= base_url('/logout') ?>";
+            }
+        });
+    });
+
 </script>
 </body>
 </html>

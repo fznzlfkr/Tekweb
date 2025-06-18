@@ -20,6 +20,7 @@
 
     <!-- Custom styles for this template-->
     <link href="<?= base_url() ?>/css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 
@@ -32,9 +33,10 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('/pegawai/dashboard') ?>">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fa-solid fa-people-roof"></i>
+                    <i class="fa-solid fa-warehouse"></i>
+
                 </div>
                 <div class="sidebar-brand-text mx-3">Management Barang</div>
             </a>
@@ -53,37 +55,52 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('/pegawai/dashboard') ?>">
-                    <i class="fa-solid fa-house"></i>
-                    <span>Dashboard</span></a>
-            </li>
+    <a class="nav-link" href="<?= base_url('/pegawai/dashboard') ?>">
+        <i class="fa-solid fa-house"></i>
+        <span>Dashboard</span>
+    </a>
+</li>
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('/pegawai/data_barang') ?>">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Data Barang</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('/pegawai/create_barang') ?>">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Barang Masuk</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('/pegawai/barang_keluar') ?>">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Barang Keluar</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('/pegawai/history') ?>">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>History</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" onclick="return confirm('Yakin ingin logout?')" href="<?= base_url('/logout') ?>">
-                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                    <span>Logout</span></a>
-            </li>
+<!-- Nav Item - Data Barang -->
+<li class="nav-item">
+    <a class="nav-link" href="<?= base_url('/pegawai/data_barang') ?>">
+        <i class="fa-solid fa-boxes-stacked"></i>
+        <span>Data Barang</span>
+    </a>
+</li>
+
+<!-- Nav Item - Barang Masuk -->
+<li class="nav-item">
+    <a class="nav-link" href="<?= base_url('/pegawai/create_barang') ?>">
+        <i class="fa-solid fa-arrow-down-wide-short"></i>
+        <span>Barang Masuk</span>
+    </a>
+</li>
+
+<!-- Nav Item - Barang Keluar -->
+<li class="nav-item">
+    <a class="nav-link" href="<?= base_url('/pegawai/barang_keluar') ?>">
+        <i class="fa-solid fa-arrow-up-wide-short"></i>
+        <span>Barang Keluar</span>
+    </a>
+</li>
+
+<!-- Nav Item - History -->
+<li class="nav-item">
+    <a class="nav-link" href="<?= base_url('/pegawai/history') ?>">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        <span>History</span>
+    </a>
+</li>
+
+<!-- Nav Item - Logout -->
+<li class="nav-item">
+    <a class="nav-link" href="#" id="btnLogout">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        <span>Logout</span>
+    </a>
+</li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -187,7 +204,46 @@
 
     <!-- Custom scripts for all pages-->
     <script src="<?= base_url() ?>/js/sb-admin-2.min.js"></script>
+<script>
+    document.getElementById('btnLogout').addEventListener('click', function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Yakin ingin logout?',
+            text: "Kamu akan keluar dari sistem.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Logout',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "<?= base_url('/logout') ?>";
+            }
+        });
+    });
+    document.querySelectorAll('.btnHapus').forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
 
+            Swal.fire({
+                title: 'Yakin ingin menghapus?',
+                text: "Data yang dihapus tidak bisa dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Ya, Hapus',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Cari dan submit form terdekat
+                    this.closest('form').submit();
+                }
+            });
+        });
+    });
+</script>
 </body>
 
 </html>
