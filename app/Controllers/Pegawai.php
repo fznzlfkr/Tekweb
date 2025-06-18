@@ -188,6 +188,7 @@ class Pegawai extends BaseController
 
         return redirect()->to(base_url('pegawai/profil/' . $id))->with('success', 'Data berhasil diperbarui');
     }
+<<<<<<< HEAD
     public function history(){
         $pegawaiModel = new PegawaiModel();
         $historyModel = new HistoryModel();
@@ -199,3 +200,6 @@ class Pegawai extends BaseController
         return view('pegawai/history', $data);
     }
 }
+=======
+}
+>>>>>>> 7b76172de6733950edff6da39618fc9fb4d324cb
