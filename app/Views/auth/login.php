@@ -58,7 +58,7 @@
                             <input type="checkbox" id="showPassword" class="custom-checkbox">
                             <label for="showPassword">Lihat password</label>
                         </div>
-                        <a href="<?= base_url('forgot-password') ?>">Lupa password?</a>
+                        <a href="<?= base_url('reset') ?>">Lupa Password?</a>
                     </div>
 
                     <!-- Login Button -->
