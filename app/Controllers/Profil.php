@@ -2,12 +2,12 @@
 
 namespace App\Controllers;
 
-use App\Controllers\BaseController;
 use App\Models\PegawaiModel;
 use App\Models\UserModel;
 
 class Profil extends BaseController
 {
+<<<<<<< HEAD
     public function index()
     {
         $pegawaiId = session()->get('pegawai_id');
@@ -32,4 +32,20 @@ class Profil extends BaseController
             'user'  => $user
         ]);
     }
+=======
+   public function index()
+{
+    $model = new \App\Models\PegawaiModel();
+
+    $data['title'] = 'Profil Pegawai'; // Tambahkan ini
+    $data['pegawai'] = $model->getProfilLengkap(1);
+
+    if (!$data['pegawai']) {
+        return 'Data pegawai tidak ditemukan.';
+    }
+
+    return view('pegawai/profil', $data);
+}
+
+>>>>>>> ff2cfb2d923bf0578aa629112b0d9cf9b7cf1e11
 }

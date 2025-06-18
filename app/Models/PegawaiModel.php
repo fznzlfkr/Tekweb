@@ -10,43 +10,28 @@ class PegawaiModel extends Model
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama', 'email', 'password', 'role'];
+    protected $allowedFields    = ['nip', 'nama', 'jenis_kelamin', 'alamat', 'no_handphone', 'foto'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
 
-    protected array $casts = [];
-    protected array $castHandlers = [];
-
     // Dates
     protected $useTimestamps = false;
-    protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
 
     // Validation
     protected $validationRules      = [];
     protected $validationMessages   = [];
-    protected $skipValidation       = false;
-    protected $cleanValidationRules = true;
 
     // Callbacks
     protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
 
-     public function getProfilLengkap($idPegawai)
+    /**
+     * Ambil data lengkap profil pegawai beserta username dan role dari tabel users
+     */
+    public function getProfilLengkap($idPegawai)
     {
-        return $this->select('pegawai.*, users.username, users.role, users.status')
+        return $this->select('pegawai.*, users.username, users.role')
                     ->join('users', 'users.id_pegawai = pegawai.id')
                     ->where('pegawai.id', $idPegawai)
                     ->first();
