@@ -8,7 +8,6 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 <!-- Google Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
   :root {
     --primary-color: #3a7bd5;
@@ -77,22 +76,6 @@
     align-items: center;
     gap: 0.75rem;
   }
-
-  .btn-logout-custom {
-    color: #ffffff !important;
-    background-color: #e74a3b;
-    border-radius: 0.35rem;
-    padding: 0.5rem 1rem;
-    transition: all 0.3s ease;
-}
-
-.btn-logout-custom:hover {
-    background-color: #c0392b;
-    color: #fff;
-    transform: scale(1.03);
-    box-shadow: 0 4px 10px rgba(231, 74, 59, 0.4);
-}
-
 
   .avatar {
     width: 36px;
@@ -206,11 +189,7 @@
   <div class="header-right">
     <div class="user-profile">
       <div class="username"><?= session("username")?></div>
-      <a class="nav-link btn-logout-custom" href="#" id="btnLogout">
-    <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>
-    <span>Logout</span>
-</a>
-
+      <a href="<?= base_url('logout') ?>" class="btn btn-sm btn-outline-light ms-2" onclick="return confirm('Yakin ingin logout?')">Logout</a>
     </div>
   </div>
 </header>
@@ -243,7 +222,7 @@
   <article class="card-dashboard" role="region" aria-labelledby="card-users-title">
     <div class="icon-circle"><span class="material-icons">group</span></div>
     <h2 class="card-title" id="card-users-title">Jumlah Pegawai</h2>
-    <div class="card-value" id="totalUsers"><?= esc($jumlahPegawai) ?></div>
+    <div class="card-value" id="totalUsers"><?= esc($jumlahuser) ?></div>
   </article>
 
 <!-- Harga Beli Barang -->
@@ -415,27 +394,6 @@
       }
     }
   });
-  <!-- SweetAlert2 -->
-
-
-    document.getElementById('btnLogout').addEventListener('click', function (e) {
-        e.preventDefault();
-        Swal.fire({
-            title: 'Yakin ingin logout?',
-            text: "Kamu akan keluar dari sistem.",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Logout',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = "<?= base_url('/logout') ?>";
-            }
-        });
-    });
-
 </script>
 </body>
 </html>

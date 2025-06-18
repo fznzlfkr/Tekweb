@@ -6,18 +6,22 @@ use App\Controllers\BaseController;
 use App\Models\BarangModel;
 use App\Models\PegawaiModel;
 use App\Models\HistoryModel;
+use App\Models\UserModel;
 
 class Admin extends BaseController
 {
+
     public function index()
     {
         $barangModel = new BarangModel();
         $pegawaiModel = new PegawaiModel();
         $historyModel = new HistoryModel();
+        $userModel = new UserModel();
 
         // Ambil data
         $jumlahBarang = $barangModel->countAll();
         $jumlahPegawai = $pegawaiModel->countAll();
+        $jumlahuser = $userModel->countAll();
         $dataBarang = $barangModel->findAll();
 
         // Hitung total barang masuk
@@ -61,6 +65,7 @@ class Admin extends BaseController
         $data = [
             'jumlahBarang'     => $jumlahBarang,
             'jumlahPegawai'    => $jumlahPegawai,
+            'jumlahuser'        => $jumlahuser,
             'jumlahMasuk'      => $jumlahMasuk,
             'jumlahKeluar'     => $jumlahKeluar,
             'dataBarang'       => $dataBarang,
