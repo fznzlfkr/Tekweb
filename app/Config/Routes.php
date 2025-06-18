@@ -23,6 +23,14 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
     $routes->get('data_barang', 'Admin::dataBarang');
 });
 
+// Reset Password
+$routes->get('/reset', 'ResetPasswordController::requestEmail');
+$routes->post('/reset/send-otp', 'ResetPasswordController::sendOtp');
+$routes->get('/reset/verify-otp', 'ResetPasswordController::verifyOtp');
+$routes->post('/reset/process-otp', 'ResetPasswordController::processOtp');
+$routes->get('/reset/new-password', 'ResetPasswordController::newPassword');
+$routes->post('/reset/save-password', 'ResetPasswordController::savePassword');
+
 // ROUTE UNTUK PEGAWAI (dengan filter login)
 $routes->group('pegawai', ['filter' => 'auth'], function ($routes) {
     // Dashboard & Profil
