@@ -189,7 +189,7 @@
   <div class="header-right">
     <div class="user-profile">
       <div class="username"><?= session("username")?></div>
-      <a href="<?= base_url('logout') ?>" class="btn btn-sm btn-outline-light ms-2">Logout</a>
+      <a href="<?= base_url('logout') ?>" class="btn btn-sm btn-outline-light ms-2" onclick="return confirm('Yakin ingin logout?')">Logout</a>
     </div>
   </div>
 </header>
@@ -226,57 +226,98 @@
   </section>
 
   <!-- Transaksi Terbaru -->
-  <section class="recent-activity" aria-label="Recent transactions and activities">
-    <h3>Info Barang</h3>
-    <div class="table-responsive">
-      <table class="table table-dark table-hover align-middle">
-        <thead>
+  <section class="recent-activity" aria-label="Info Barang">
+  <h3>Info Barang</h3>
+  <div class="table-responsive">
+    <table class="table table-dark table-hover align-middle">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nama Barang</th>
+          <th>Varian</th>
+          <th>Harga Beli</th>
+          <th>Harga Jual</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php if (!empty($dataBarang)) : ?>
+          <?php $no = 1; ?>
+          <?php foreach ($dataBarang as $barang) : ?>
+            <tr>
+              <th scope="row"><?= $no++ ?></th>
+              <td><?= esc($barang['nama_barang']) ?></td>
+              <td><?= esc($barang['varian']) ?></td>
+              <td>Rp<?= number_format($barang['harga_beli'], 0, ',', '.') ?></td>
+              <td>Rp<?= number_format($barang['harga_jual'], 0, ',', '.') ?></td>
+            </tr>
+          <?php endforeach; ?>
+        <?php else : ?>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nama Barang</th>
-            <th scope="col">Jenis Transaksi</th>
-            <th scope="col">Jumlah</th>
-            <th scope="col">Tanggal</th>
-            <th scope="col">Status</th>
+            <td colspan="5" class="text-center">Tidak ada data barang.</td>
           </tr>
-        </thead>
-        <tbody id="recentTransactions">
-          <tr>
-            <th scope="row">1</th>
-            <td>Keyboard Mechanical</td>
-            <td>Barang Masuk</td>
-            <td>50</td>
-            <td>2024-06-15</td>
-            <td><span class="badge bg-success">Sukses</span></td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Mouse Wireless</td>
-            <td>Barang Keluar</td>
-            <td>20</td>
-            <td>2024-06-14</td>
-            <td><span class="badge bg-success">Sukses</span></td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Monitor 24 inch</td>
-            <td>Barang Masuk</td>
-            <td>15</td>
-            <td>2024-06-14</td>
-            <td><span class="badge bg-warning text-dark">Pending</span></td>
-          </tr>
-          <tr>
-            <th scope="row">4</th>
-            <td>HDMI Cable</td>
-            <td>Barang Keluar</td>
-            <td>30</td>
-            <td>2024-06-13</td>
-            <td><span class="badge bg-danger">Gagal</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+        <?php endif; ?>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="recent-activity" aria-label="Info Masuk dan Keluar">
+  <h3>Info Barang Masuk</h3>
+  <div class="table-responsive mb-4">
+    <table class="table table-dark table-hover align-middle">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nama Barang</th>
+          <th>Jumlah</th>
+          <th>Tanggal Masuk</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php if (!empty($dataMasuk)) : ?>
+          <?php $i = 1; foreach ($dataMasuk as $masuk) : ?>
+            <tr>
+              <th><?= $i++ ?></th>
+              <td><?= esc($masuk['nama_barang']) ?></td>
+              <td><?= esc($masuk['jumlah']) ?></td>
+              <td><?= esc(date('d-m-Y', strtotime($masuk['tanggal']))) ?></td>
+            </tr>
+          <?php endforeach; ?>
+        <?php else : ?>
+          <tr><td colspan="4" class="text-center">Tidak ada data barang masuk.</td></tr>
+        <?php endif; ?>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Info Barang Keluar</h3>
+  <div class="table-responsive">
+    <table class="table table-dark table-hover align-middle">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nama Barang</th>
+          <th>Jumlah</th>
+          <th>Tanggal Keluar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php if (!empty($dataKeluar)) : ?>
+          <?php $i = 1; foreach ($dataKeluar as $keluar) : ?>
+            <tr>
+              <th><?= $i++ ?></th>
+              <td><?= esc($keluar['nama_barang']) ?></td>
+              <td><?= esc($keluar['jumlah']) ?></td>
+              <td><?= esc(date('d-m-Y', strtotime($keluar['tanggal']))) ?></td>
+            </tr>
+          <?php endforeach; ?>
+        <?php else : ?>
+          <tr><td colspan="4" class="text-center">Tidak ada data barang keluar.</td></tr>
+        <?php endif; ?>
+      </tbody>
+    </table>
+  </div>
+</section>
 
 </main>
 

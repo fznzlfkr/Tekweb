@@ -15,10 +15,12 @@ class Admin extends BaseController
 
         $jumlahBarang = $barangModel->countAll();
         $jumlahPegawai = $pegawaiModel->countAll();
+        $dataBarang = $barangModel->findAll(); // Tambahkan ini
 
         $data = [
             'jumlahBarang'   => $jumlahBarang,
             'jumlahPegawai'  => $jumlahPegawai,
+            'dataBarang'     => $dataBarang, // Kirim data barang ke view
         ];
 
         return view('admin/dashboard', $data);

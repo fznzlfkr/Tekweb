@@ -10,12 +10,8 @@ class Pegawai extends BaseController
     // Halaman utama dashboard pegawai
     public function index()
     {
-<<<<<<< HEAD
         
         $data=['title' => 'Dashboard Pegawai'];
-=======
-        $data = ['title' => 'Dashboard Pegawai'];
->>>>>>> ff2cfb2d923bf0578aa629112b0d9cf9b7cf1e11
         return view('pegawai/dashboard', $data);
     }
 

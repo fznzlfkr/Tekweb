@@ -2,50 +2,48 @@
 
 namespace App\Controllers;
 
-use App\Models\PegawaiModel;
 use App\Models\UserModel;
 
 class Profil extends BaseController
 {
-<<<<<<< HEAD
     public function index()
     {
-        $pegawaiId = session()->get('pegawai_id');
-
-        $pegawaiModel = new PegawaiModel();
-        $userModel = new UserModel();
-
-        // Join UserModel dengan PegawaiModel
-        $user = $userModel
-            ->select('users.*, pegawai.nama, pegawai.jenis_kelamin, pegawai.alamat, pegawai.no_handphone, pegawai.lokasi_presensi')
-            ->join('pegawai', 'pegawai.id = users.id_pegawai')
-            ->where('users.id_pegawai', $pegawaiId)
-            ->first();
-
-        if (!$user) {
-            echo "Data pengguna tidak ditemukan untuk ID: " . $pegawaiId;
-            exit;
+        $username = session()->get('username');
+    
+        if (!$username) {
+            return redirect()->to('/login')->with('error', 'Silakan login terlebih dahulu.');
         }
-
+    
+        $userModel = new UserModel();
+    
+        $user = $userModel
+            ->select('users.id, users.username, users.email, users.role, users.id_pegawai, pegawai.nama, pegawai.jenis_kelamin, pegawai.alamat, pegawai.no_handphone')
+            ->join('pegawai', 'pegawai.id = users.id_pegawai')
+            ->where('users.username', $username)
+            ->first();
+    
+        if (!$user) {
+            return redirect()->to('/dashboard')->with('error', 'Data profil tidak ditemukan.');
+        }
+    
         return view('pegawai/profil', [
             'title' => 'Profil Pegawai',
             'user'  => $user
         ]);
     }
-=======
-   public function index()
-{
-    $model = new \App\Models\PegawaiModel();
-
-    $data['title'] = 'Profil Pegawai'; // Tambahkan ini
-    $data['pegawai'] = $model->getProfilLengkap(1);
-
-    if (!$data['pegawai']) {
-        return 'Data pegawai tidak ditemukan.';
+    
+    public function save()
+    {
+        $pegawaiModel = new \App\Models\PegawaiModel();
+    
+        $pegawaiModel->update($this->request->getPost('id_pegawai'), [
+            'nama'          => $this->request->getPost('nama'),
+            'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
+            'alamat'        => $this->request->getPost('alamat'),
+            'no_handphone'  => $this->request->getPost('no_handphone'),
+        ]);
+    
+        return redirect()->to('/profil')->with('success', 'Profil berhasil diperbarui.');
     }
-
-    return view('pegawai/profil', $data);
-}
-
->>>>>>> ff2cfb2d923bf0578aa629112b0d9cf9b7cf1e11
+    
 }

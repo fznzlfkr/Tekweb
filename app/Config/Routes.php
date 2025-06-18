@@ -32,6 +32,9 @@ $routes->group('pegawai', ['filter' => 'auth'], function($routes) {
     $routes->post('delete_barang/(:num)', 'Barang::delete/$1');
 });
 
+$routes->post('/profil/save', 'Profil::save');
+
+
 $routes->get('pegawai/dashboard', 'Pegawai::index');
 $routes->get('pegawai/data_barang', 'Barang::index');
 $routes->get('pegawai/create_barang', 'Barang::create');
