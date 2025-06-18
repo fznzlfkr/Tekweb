@@ -3,30 +3,20 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-<<<<<<< HEAD
 use App\Models\PegawaiModel;
-=======
 use App\Models\BarangModel;
 use App\Models\HistoryModel;
->>>>>>> 19c64b7 (Update)
-
 class Pegawai extends BaseController
 {
     // Halaman utama dashboard pegawai
     public function index()
     {
-<<<<<<< HEAD
         
         $data=['title' => 'Dashboard Pegawai'];
         return view('pegawai/dashboard', $data);
     }
 
     // Halaman data barang pegawai
-=======
-        return view('pegawai/dashboard', ['title' => 'Dashboard Pegawai']);
-    }
-
->>>>>>> 19c64b7 (Update)
     public function dataBarang()
     {
         $model = new BarangModel();
@@ -139,7 +129,6 @@ class Pegawai extends BaseController
         $pegawaiModel = new PegawaiModel();
         $pegawai = $pegawaiModel->find($id);
 
-<<<<<<< HEAD
         if (!$pegawai) {
             return redirect()->to(base_url('pegawai'))->with('error', 'Data pegawai tidak ditemukan.');
         }
@@ -198,17 +187,5 @@ class Pegawai extends BaseController
         $pegawaiModel->update($id, $data);
 
         return redirect()->to(base_url('pegawai/profil/' . $id))->with('success', 'Data berhasil diperbarui');
-=======
-    public function history()
-    {
-        $db = \Config\Database::connect();
-        $builder = $db->table('history');
-        $history = $builder->orderBy('tanggal', 'DESC')->get()->getResultArray();
-
-        return view('pegawai/history', [
-            'title' => 'Riwayat Barang',
-            'history' => $history
-        ]);
->>>>>>> 19c64b7 (Update)
     }
 }

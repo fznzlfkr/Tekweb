@@ -203,15 +203,16 @@
       <div class="card-value" id="totalStock"><?= esc($jumlahBarang) ?></div>
     </article>
     <article class="card-dashboard" role="region" aria-labelledby="card-incoming-title">
-      <div class="icon-circle"><span class="material-icons">add_shopping_cart</span></div>
-      <h2 class="card-title" id="card-incoming-title">Barang Masuk</h2>
-      <div class="card-value" id="totalIncoming">350</div>
-    </article>
-    <article class="card-dashboard" role="region" aria-labelledby="card-outgoing-title">
-      <div class="icon-circle"><span class="material-icons">shopping_cart_checkout</span></div>
-      <h2 class="card-title" id="card-outgoing-title">Barang Keluar</h2>
-      <div class="card-value" id="totalOutgoing">275</div>
-    </article>
+  <div class="icon-circle"><span class="material-icons">add_shopping_cart</span></div>
+  <h2 class="card-title" id="card-incoming-title">Barang Masuk</h2>
+  <div class="card-value" id="totalIncoming"><?= esc($jumlahMasuk) ?></div>
+</article>
+
+<article class="card-dashboard" role="region" aria-labelledby="card-outgoing-title">
+  <div class="icon-circle"><span class="material-icons">shopping_cart_checkout</span></div>
+  <h2 class="card-title" id="card-outgoing-title">Barang Keluar</h2>
+  <div class="card-value" id="totalOutgoing"><?= esc($jumlahKeluar) ?></div>
+</article>
     <article class="card-dashboard" role="region" aria-labelledby="card-users-title">
       <div class="icon-circle"><span class="material-icons">group</span></div>
       <h2 class="card-title" id="card-users-title">Jumlah Pegawai</h2>
@@ -328,26 +329,27 @@
   const dashboardChart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['Jumlah Barang', 'Barang Masuk', 'Barang Keluar', 'Jumlah Pegawai'],
-      datasets: [{
-        label: 'Statistik',
-        data: [<?= $jumlahBarang ?>, 350, 275, <?= $jumlahPegawai ?>],
-        backgroundColor: [
-          'rgba(58, 123, 213, 0.6)',
-          'rgba(34, 197, 94, 0.6)',
-          'rgba(234, 179, 8, 0.6)',
-          'rgba(239, 68, 68, 0.6)'
-        ],
-        borderColor: [
-          'rgba(58, 123, 213, 1)',
-          'rgba(34, 197, 94, 1)',
-          'rgba(234, 179, 8, 1)',
-          'rgba(239, 68, 68, 1)'
-        ],
-        borderWidth: 1,
-        borderRadius: 8
-      }]
-    },
+  labels: ['Jumlah Barang', 'Barang Masuk', 'Barang Keluar', 'Jumlah Pegawai'],
+  datasets: [{
+    label: 'Statistik',
+    data: [<?= $jumlahBarang ?>, <?= $jumlahMasuk ?>, <?= $jumlahKeluar ?>, <?= $jumlahPegawai ?>],
+    backgroundColor: [
+      'rgba(58, 123, 213, 0.6)',
+      'rgba(34, 197, 94, 0.6)',
+      'rgba(234, 179, 8, 0.6)',
+      'rgba(239, 68, 68, 0.6)'
+    ],
+    borderColor: [
+      'rgba(58, 123, 213, 1)',
+      'rgba(34, 197, 94, 1)',
+      'rgba(234, 179, 8, 1)',
+      'rgba(239, 68, 68, 1)'
+    ],
+    borderWidth: 1,
+    borderRadius: 8
+  }]
+},
+
     options: {
       responsive: true,
       plugins: {
