@@ -12,6 +12,7 @@ class UserModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
+<<<<<<< HEAD
     protected $allowedFields = [
         'id_pegawai',
         'username',
@@ -23,6 +24,11 @@ class UserModel extends Model
         'otp_code',
         'otp_expired_at'
 ];
+=======
+    protected $allowedFields = ['id_pegawai', 'username', 'email', 'password', 'status', 'role', 'reset_token', 'otp_code', 'otp_expired_at'];
+
+
+>>>>>>> a0f9e1f (login fix & reset Password)
 
 
     protected bool $allowEmptyInserts = false;

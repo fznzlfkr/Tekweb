@@ -9,6 +9,7 @@ use CodeIgniter\Router\RouteCollection;
 // ROUTE UMUM (Tanpa Filter)
 $routes->get('/', 'Home::index');
 
+
 // Login & Register
 $routes->get('/login', 'Login::index');
 $routes->post('/login_action', 'Login::login_action');
@@ -30,6 +31,7 @@ $routes->get('/reset/verify-otp', 'ResetPasswordController::verifyOtp');
 $routes->post('/reset/process-otp', 'ResetPasswordController::processOtp');
 $routes->get('/reset/new-password', 'ResetPasswordController::newPassword');
 $routes->post('/reset/save-password', 'ResetPasswordController::savePassword');
+
 
 // ROUTE UNTUK PEGAWAI (dengan filter login)
 $routes->group('pegawai', ['filter' => 'auth'], function ($routes) {

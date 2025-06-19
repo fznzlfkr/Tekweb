@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace App\Controllers;
 
 use App\Models\UserModel;
@@ -24,7 +25,7 @@ class ResetPasswordController extends Controller
 
         $otp = rand(100000, 999999);
         $token = bin2hex(random_bytes(16));
-        $expired = Time::now()->addMinutes(10); // OTP berlaku 10 menit
+        $expired = Time::now()->addMinutes(10);
 
         $userModel->update($user['id'], [
             'otp_code' => $otp,
@@ -34,8 +35,9 @@ class ResetPasswordController extends Controller
 
         $emailService = \Config\Services::email();
         $emailService->setTo($email);
+        $emailService->setFrom(env('email.fromEmail'), env('email.fromName'));
         $emailService->setSubject('Kode OTP Reset Password');
-        $emailService->setMessage("Kode OTP kamu adalah: <b>$otp</b><br><br>Berlaku sampai: " . $expired->toDateTimeString());
+        $emailService->setMessage("Halo, <br>Kode OTP kamu adalah: <b>$otp</b><br><br>Berlaku sampai: " . $expired->toDateTimeString());
 
         if (!$emailService->send()) {
             return redirect()->back()->with('error', 'Gagal mengirim email OTP.');
